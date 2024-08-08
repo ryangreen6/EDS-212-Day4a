@@ -1,0 +1,124 @@
+---
+title: "EDS 212 Day4a"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Create matrices in R!
+
+```{r}
+# create a sequence of values
+my_values <- seq(from= 1, to=10, by=1)
+my_values
+
+# convert to matrix, telling R how many rows and columns we'll have. byrow acts to fill the matrix by row rather than by column
+
+my_matrix <- matrix(data= my_values, 
+                    nrow=2,
+                    ncol=5,
+                    byrow=TRUE)
+my_matrix
+
+# nice!
+
+```
+
+
+# incorrectly declared matrix sizes
+```{r}
+
+matrix(data= my_values, nrow=2, ncol=3, byrow=TRUE)
+matrix(data= my_values, nrow=3, ncol=4, byrow=TRUE)
+
+```
+
+# let's do some math with matrices
+
+```{r}
+# scalar multiplication
+
+4*my_matrix
+
+# now let's do some adding and subtracting of matrices. Create a second matrix to work with:
+
+my_values2 <- seq(from=21, to=30, by=1)
+my_matrix2 <- matrix(data=my_values2, nrow=2, byrow=TRUE)
+my_matrix2
+
+# now let's add matrices
+
+my_matrix+my_matrix2
+
+# subtract them
+
+my_matrix2-my_matrix
+
+# we can also multiply matrices (taking the dot product of them)
+
+my_matrix %*% my_matrix2
+
+# this isn't working and the teacher doesn't know why lol
+
+```
+
+
+```{r}
+
+# make a couple of 2x2 matrices
+
+cats <- matrix(data=c(0, 4, 3, 1), nrow=2, byrow=TRUE)
+dogs <- matrix(data=c(6, -3, 0, 2), nrow=2, byrow=TRUE)
+
+# now let's take the dot product of these two using %*%
+
+cats %*% dogs
+
+
+```
+
+# leslie matrix example
+
+```{r}
+
+# create a matrix
+insect_leslie <-matrix(data=c(0, 0, 600, .2, 0, 0, 0, .08, 0), nrow=3, byrow=TRUE)
+insect_leslie
+
+# initial starting conditions
+
+insect_y0 <- c(12000, 700, 500)
+
+# population at year 1
+insect_y1 <- insect_leslie %*% insect_y0
+insect_y1
+
+# now lets find the population at year 2
+
+insect_y2 <- insect_leslie %*% insect_y1
+insect_y2
+
+# population at year 3
+
+insect_y3 <- insect_leslie %*% insect_y2
+insect_y3
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
